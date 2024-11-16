@@ -116,6 +116,11 @@ def quiz():
     return render_template('quiz.html')
 
 
+@app.route('/submit',methods=['POST','GET'])
+def submit():
+    return render_template('submit.html')
+
+
 @app.route('/publication', methods=['POST', 'GET'])
 def publication():
     return render_template('publication.html')
