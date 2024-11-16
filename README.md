@@ -7,3 +7,7 @@ pip install Flask
 pip install -U Flask-SQLAlchemy
 pip install bcrypt
 ```
+# clone the repository
+```
+https://github.com/refat-pasha/11th-lesson_SQLAlchemy_userAuth_quiz_table.git
+```
