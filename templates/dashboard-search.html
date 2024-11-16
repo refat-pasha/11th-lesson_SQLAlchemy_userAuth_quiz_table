@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>11th Lesson</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/icomoon-social.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="css/leaflet.css" />
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+<link rel="stylesheet" href="./dashboard.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        /* Header Styles */
+        .mainmenu-wrapper {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .mainmenu-wrapper a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .mainmenu-wrapper ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .mainmenu-wrapper .logo-wrapper img {
+            height: 50px;
+        }
+
+        .mainmenu-wrapper nav {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .extras button {
+            background-color: transparent;
+            border: 1px solid white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .extras button a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Hamburger Menu */
+        .hamburger-menu {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            display: none;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .hamburger-menu div {
+            width: 30px;
+            height: 4px;
+            background-color: white;
+            margin: 5px 0;
+        }
+
+        .menu-items {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.3s ease;
+            z-index: 998;
+        }
+
+        .menu-items a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .menu-items a:hover {
+            background-color: #555;
+        }
+
+        .menu-items.open {
+            right: 0;
+        }
+
+        /* Search Bar */
+        .search-section {
+            padding: 30px 0;
+            background-color: #e2e2e2;
+        }
+
+        .search-section input[type="text"] {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #333;
+            border-radius: 4px;
+        }
+
+        .search-section button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .search-section button:hover {
+            background-color: #555;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .video-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .video-card h3 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            .hamburger-menu {
+                display: block;
+            }
+
+            .search-section input[type="text"] {
+                width: 80%;
+            }
+        }
+
+
+
+
+
+
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .box {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+        }
+        .syl-box {
+            background-color: #e3f2fd;
+        }
+        .qna-box {
+            background-color: #fce4ec;
+        }
+        .videos-section {
+            margin-top: 30px;
+        }
+        .scrollable-videos {
+            height: 500px;
+            overflow-y: auto;
+        }
+        .video-row {
+            margin-bottom: 15px;
+        }
+        .video-card {
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .video-card img {
+            width: 100%;
+            height: auto;
+        }
+        .video-card-body {
+            padding: 10px;
+            text-align: center;
+        }
+
+
+
+
+
+
+        .pdf-section {
+            max-height: 500px; /* Fixed height for scrollable section */
+            overflow-y: auto; /* Vertical scroll */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .pdf-card {
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin-bottom: 15px;
+        }
+        .pdf-card:hover {
+            transform: scale(1.05);
+        }
+        .pdf-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .pdf-card-body {
+            padding: 15px;
+            text-align: center;
+        }
+        .btn-download {
+            background-color: #0d6efd;
+            color: white;
+            border-radius: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+	<nav class="flex justify-between bg-green-500">
+        <div>
+            <div class="w-20 my-3    ml-40">
+                <img src="static/images/Screenshot_2024-10-17_at_11.25.37_PM-removebg-preview.png" alt="">
+                </div>     
+            </div>
+            <div>
+                <ul class="flex gap-11 font-medium mt-10 mr-20 items-center">
+                    <li><a href="index">Home</a></li>
+                    <li><a href="">Dashbaord</a></li>
+                    <li><a href="quiz">Quiz</a></li>
+                    <li><a href="publication">Publication</a></li>
+                    <li><a href="help">Help</a></li>
+                    <li class="bg-black text-white px-4 py-2 rounded-full hover:bg-green-700"><a href="index">Log Out</a></li>
+                </ul>
+            </div>
+    </nav>
+
+    <!-- Search Section -->
+    <!-- <div class="search-section">
+        <div class="container">
+            <input type="text" placeholder="Search for content..." id="search-bar">
+            <button type="button">Search</button>
+        </div>
+    </div> -->
+    <!-- End Search Section -->
+
+    <!-- Video Grid -->
+    <div class="container">
+        <h1 class="text-center text-3xl mt-10 font-bold mb-10">ToGet Materials</h1>
+
+        <!-- Row 1: Select User Type & Select University -->
+        <div class="row dropdown-row">
+            <div class="col-md-6">
+                <label for="userType" class="form-label">Select User Type</label>
+                <select class="form-select" id="userType">
+                    <option selected>Choose...</option>
+                    <option value="1">Student</option>
+                    <option value="2">Faculty</option>
+                    <option value="3">Admin</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="university" class="form-label">Select University</label>
+                <select class="form-select" id="university">
+                    <option selected>Choose...</option>
+                    <option value="1">Harvard University</option>
+                    <option value="2">MIT</option>
+                    <option value="3">Stanford University</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Row 2: Select Department & Select Exam -->
+        <div class="row dropdown-row">
+            <div class="col-md-6">
+                <label for="department" class="form-label">Select Department</label>
+                <select class="form-select" id="department">
+                    <option selected>Choose...</option>
+                    <option value="1">Computer Science</option>
+                    <option value="2">Business</option>
+                    <option value="3">Mechanical Engineering</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="exam" class="form-label">Select Exam</label>
+                <select class="form-select" id="exam">
+                    <option selected>Choose...</option>
+                    <option value="1">Mid-Term</option>
+                    <option value="2">Final Exam</option>
+                    <option value="3">Quizzes</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Row 3: Select Course & Search Topic -->
+        <div class="row dropdown-row">
+            <div class="col-md-6">
+                <label for="course" class="form-label">Select Course</label>
+                <select class="form-select" id="course">
+                    <option selected>Choose...</option>
+                    <option value="1">Data Structures</option>
+                    <option value="2">Marketing 101</option>
+                    <option value="3">Thermodynamics</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="searchTopic" class="form-label">Search Topic</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchTopic" placeholder="Enter topic to search">
+                    <button class="btn btn-primary" type="button" ><a href="dashboard-search">Search</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <!-- Top Section: Syllabus and Question Analysis Boxes -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box syl-box">
+                    <h5>Syllabus</h5>
+                    <p>Content related to the syllabus will go here. You can list topics, subtopics, and learning outcomes.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="box qna-box">
+                    <h5>Question Analysis</h5>
+                    <ul>
+                        <li>Topic 1 - Midterm Exam</li>
+                        <li>Topic 2 - Final Exam</li>
+                        <li>Topic 3 - Quiz 1</li>
+                        <li>Topic 4 - Quiz 2</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Videos Section -->
+        <div class="videos-section">
+            <h4 class="mb-3 text-center text-3xl mt-5 font-bold">Videos</h4>
+            <div class="scrollable-videos">
+                <!-- Row 1 -->
+                <div class="row video-row">
+                    <div class="col-md-4">
+                        <div class="video-card">
+                            <img src="static/img dashboard/download.jpeg" alt="Video 1">
+                            <div class="video-card-body">
+                                <h6>Video Title 1</h6>
+                                <p>Short description of video content.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="video-card">
+                            <img src="static/img dashboard/func(thumb).webp" alt="Video 2">
+                            <div class="video-card-body">
+                                <h6>Video Title 2</h6>
+                                <p>Short description of video content.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="video-card">
+                            <img src="static/img dashboard/hq720.webp" alt="Video 3">
+                            <div class="video-card-body">
+                                <h6>Video Title 3</h6>
+                                <p>Short description of video content.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Row 2 -->
+                <div class="row video-row">
+                    <div class="col-md-4">
+                        <div class="video-card">
+                            <img src="static/img dashboard/hqdefault.jpg" alt="Video 4">
+                            <div class="video-card-body">
+                                <h6>Video Title 4</h6>
+                                <p>Short description of video content.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="video-card">
+                            <img src="static/img dashboard/hqdefault (1).webp" alt="Video 5">
+                            <div class="video-card-body">
+                                <h6>Video Title 5</h6>
+                                <p>Short description of video content.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="video-card">
+                            <img src="static/img dashboard/hqdefault (2).webp" alt="Video 6">
+                            <div class="video-card-body">
+                                <h6>Video Title 6</h6>
+                                <p>Short description of video content.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="container mt-5">
+        <h3 class="mb-4 text-center mt-5 text-3xl font-bold">PDF Resources</h3>
+    
+        <!-- Scrollable PDF Cards Section -->
+        <div class="pdf-section">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="pdf-card">
+                        <img src="static/img dashboard/pdf/q1.png" alt="PDF 1">
+                        <div class="pdf-card-body">
+                            <h5>PDF Title 1</h5>
+                            <p>Short description of the PDF content.</p>
+                            <button class="btn btn-download">Download</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pdf-card">
+                        <img src="static/img dashboard/pdf/q2.jpeg" alt="PDF 2">
+                        <div class="pdf-card-body">
+                            <h5>PDF Title 2</h5>
+                            <p>Short description of the PDF content.</p>
+                            <button class="btn btn-download">Download</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pdf-card">
+                        <img src="static/img dashboard/pdf/q3.jpeg" alt="PDF 3">
+                        <div class="pdf-card-body">
+                            <h5>PDF Title 3</h5>
+                            <p>Short description of the PDF content.</p>
+                            <button class="btn btn-download">Download</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pdf-card">
+                        <img src="static/img dashboard/pdf/q3.jpeg" alt="PDF 4">
+                        <div class="pdf-card-body">
+                            <h5>PDF Title 4</h5>
+                            <p>Short description of the PDF content.</p>
+                            <button class="btn btn-download">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="pdf-card">
+                        <img src="static/img dashboard/pdf/q4.jpeg" alt="PDF 5">
+                        <div class="pdf-card-body">
+                            <h5>PDF Title 5</h5>
+                            <p>Short description of the PDF content.</p>
+                            <button class="btn btn-download">Download</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pdf-card">
+                        <img src="static/img dashboard/pdf/q2.jpeg" alt="PDF 6">
+                        <div class="pdf-card-body">
+                            <h5>PDF Title 6</h5>
+                            <p>Short description of the PDF content.</p>
+                            <button class="btn btn-download">Download</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pdf-card">
+                        <img src="static/img dashboard/pdf/q3.jpeg" alt="PDF 7">
+                        <div class="pdf-card-body">
+                            <h5>PDF Title 7</h5>
+                            <p>Short description of the PDF content.</p>
+                            <button class="btn btn-download">Download</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pdf-card">
+                        <img src="static/img dashboard/pdf/q3.jpeg" alt="PDF 8">
+                        <div class="pdf-card-body">
+                            <h5>PDF Title 8</h5>
+                            <p>Short description of the PDF content.</p>
+                            <button class="btn btn-download">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-green-500 text-white text-center py-3">
+        <p>&copy; 11th Lesson. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    
+</body>
+
+</html>

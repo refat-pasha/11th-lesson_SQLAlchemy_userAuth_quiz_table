@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated 11th Lesson</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for animation */
+        .clock-animation {
+            transform: scale(0);
+            animation: grow 4s forwards;
+        }
+        @keyframes grow {
+            to {
+                transform: scale(1);
+            }
+        }
+        .reveal-animation span {
+            opacity: 0;
+            display: inline-block;
+            animation: reveal 0.5s forwards;
+        }
+        @keyframes reveal {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-green-100 flex flex-col items-center justify-center min-h-screen">
+    <div class="bg-green-500 w-full text-white py-4 flex justify-between px-8">
+        <div class="flex items-center">
+            <img src="images/Screenshot_2024-10-17_at_11.25.37_PM-removebg-preview.png" alt="11th Lesson Logo" class="h-10">
+            <span class="ml-2 text-2xl font-bold">11th Lesson</span>
+        </div>
+        <nav class="flex space-x-4">
+            <a href="#" class="hover:underline">Dashboard</a>
+            <a href="#" class="hover:underline">Quiz</a>
+            <a href="#" class="hover:underline">Publication</a>
+            <a href="#" class="hover:underline">Help</a>
+            <button class="bg-black text-white py-2 px-4 rounded hover:bg-gray-800">Sign Up</button>
+        </nav>
+    </div>
+
+    <div class="flex justify-between  mt-16">
+        <div class="text-center mb-8">
+            <h1 class="text-5xl font-bold text-black reveal-animation">
+                <span class="auto-type"></span></h6>
+            </h1>
+            <p class="text-gray-600 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius blandit facilisis quam netus.</p>
+            <button class="bg-green-600 text-white py-2 px-6 rounded mt-6 hover:bg-green-700">Get started</button>
+        </div>
+        <div class="clock-animation">
+            <img src="images/Screenshot_2024-10-17_at_11.25.37_PM-removebg-preview.png" alt="Clock" class="w-64 h-64">
+        </div>
+    </div>
+
+    <script>
+        // Animation for revealing text
+        document.addEventListener("DOMContentLoaded", () => {
+            const words = document.querySelectorAll(".reveal-animation span");
+            words.forEach((word, index) => {
+                word.style.animationDelay = `${index * 0.5}s`;
+            });
+        });
+    </script>
+
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script>
+    var typed = new Typed(".auto-type", {
+        strings: ["Exam Tomorrow?", "Incomplete Syllabus?", "Need fast tutorials?"],
+        typeSpeed: 50,
+        backSpeed: 50,
+        loop: true
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publish Yours - 11th Lesson</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans bg-gray-200">
+    <nav class="flex justify-between bg-green-500">
+        <div>
+            <div class="w-20 my-3 ml-40">
+                <img src="static/images/Screenshot_2024-10-17_at_11.25.37_PM-removebg-preview.png" alt="">
+                </div>     
+            </div>
+            <div>
+                <ul class="flex gap-11 font-medium mt-10 mr-20 items-center">
+                    <li><a href="dindex">Home</a></li>
+                    <li><a href="dashboard">Dashbord</a></li>
+                    <li><a href="quiz">Quiz</a></li>
+                    <li><a href="publication">Publication</a></li>
+                    <li><a href="help">Help</a></li>
+                    <li class="bg-black text-white px-4 py-2 rounded-full hover:bg-green-700"><a href="index">Log out</a></li>
+                </ul>
+            </div>
+    </nav>
+    
+    <header class="mt-2 text-center py-5 bg-green-500 text-white">
+        <h1 class="text-4xl">Publish Your Content</h1>
+    </header>
+
+    <main class="max-w-2xl mx-auto my-12 p-8 bg-white shadow-lg rounded-lg">
+        <h2 class="text-center text-2xl font-semibold mb-6">Share Your Knowledge</h2>
+        <form action="submit" method="POST" enctype="multipart/form-data">
+            <label for="title" class="block text-lg font-semibold mb-2">Title of Content:</label>
+            <input type="text" id="title" name="title" placeholder="Enter the title of your content" required
+                class="w-full p-3 border border-gray-300 rounded mb-4">
+
+            <label for="description" class="block text-lg font-semibold mb-2">Description:</label>
+            <textarea id="description" name="description" placeholder="Enter a brief description" required
+                class="w-full p-3 border border-gray-300 rounded mb-4 h-36"></textarea>
+
+            <label for="content-type" class="block text-lg font-semibold mb-2">Select Content Type:</label>
+            <select id="content-type" name="content-type" required class="w-full p-3 border border-gray-300 rounded mb-4">
+                <option value="video">Video</option>
+                <option value="pdf">PDF</option>
+                <option value="book">Book</option>
+            </select>
+
+            <label for="file-upload" class="block text-lg font-semibold mb-2">Upload File:</label>
+            <input type="file" id="file-upload" name="file-upload" accept=".mp4,.pdf,.docx,.epub" required
+                class="w-full p-3 border border-gray-300 rounded mb-4">
+
+            
+        </form>
+        <a href="publication-submit">
+            <button type="submit"
+            class="w-full py-3 bg-green-500 text-white rounded hover:bg-gray-600 transition duration-300">Publish
+        </button>
+        </a>
+    </main>
+
+    <footer class="bg-green-500 text-white py-4 text-center">
+        <p class="text-sm">&copy; 11th Lesson. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

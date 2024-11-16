@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publish Yours - 11th Lesson</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="bg-gray-50 font-sans h-screen ">
+    <nav class="flex justify-between bg-green-500">
+        <div>
+            <div class="w-20 my-5 ml-40">
+                <img src="static/images/Screenshot_2024-10-17_at_11.25.37_PM-removebg-preview.png" alt="">
+                </div>     
+            </div>
+            <div>
+                <ul class="flex gap-11 font-medium mt-10 mr-20 items-center">
+                    <li><a href="dindex">Home</a></li>
+                    <li><a href="deshboard">Dashboard</a></li>
+                    <li><a href="quiz">Quiz</a></li>
+                    <li><a href="publication">Publication</a></li>
+                    <li><a href="help">Help</a></li>
+                    <li class="bg-black text-white px-4 py-2 rounded-full hover:bg-green-700"><a href="index">Log out</a></li>
+                </ul>
+            </div>
+    </nav>
+
+    <header class="font-bold text-center py-5">
+        <h1 class="text-4xl mt-10">Quiz</h1>
+    </header>
+
+    <main class="max-w-2xl mx-auto my-10 p-8 bg-white shadow-md">
+        <div class="bg-green-500 role-selection text-center mb-4 py-10">
+            <h2 class="bg-green-500 text-xl mb-4">Select Your Role</h2>
+            <button id="studentBtn" class="bg-gray-800 text-white py-3 px-6 mx-2 rounded-md hover:bg-green-200 hover:text-black">Student</button>
+            <button id="teacherBtn" class="bg-gray-800 text-white py-3 px-6 mx-2 rounded-md hover:bg-green-200 hover:text-black">Teacher</button>
+        </div>
+
+        <!-- Student Quiz Section -->
+        <form action="/submit" method="POST" class="quiz-section hidden" id="quiz-section">
+            <h2 class="text-xl mb-6">Student Quiz</h2>
+            <div class="mb-6">
+                <h3 class="text-lg mb-3">1. Which of the following is not a principle of OOP?</h3>
+                <label class="block mb-2">
+                    <input type="radio" name="q1" class="mr-2"> Encapsulation
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q1" class="mr-2"> Inheritance
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q1" class="mr-2"> Polymorphism
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q1" class="mr-2"> Compilation
+                </label>
+            </div>
+    
+            <!-- Question 2 -->
+            <div class="mb-6">
+                <h3 class="text-lg mb-3">2. What is the concept of OOP that combines data and the functions that operate on that data?</h3>
+                <label class="block mb-2">
+                    <input type="radio" name="q2" class="mr-2"> Abstraction
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q2" class="mr-2"> Encapsulation
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q2" class="mr-2"> Inheritance
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q2" class="mr-2"> Polymorphism
+                </label>
+            </div>
+    
+            <!-- Question 3 -->
+            <div class="mb-6">
+                <h3 class="text-lg mb-3">3. In OOP, what does a subclass inherit from a superclass?</h3>
+                <label class="block mb-2">
+                    <input type="radio" name="q3" class="mr-2"> Methods and attributes
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q3" class="mr-2"> Only attributes
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q3" class="mr-2"> Only methods
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q3" class="mr-2"> None of the above
+                </label>
+            </div>
+    
+            <!-- Question 4 -->
+            <div class="mb-6">
+                <h3 class="text-lg mb-3">4. What feature of OOP allows a derived class to be treated as the same type as the base class?</h3>
+                <label class="block mb-2">
+                    <input type="radio" name="q4" class="mr-2"> Inheritance
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q4" class="mr-2"> Polymorphism
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q4" class="mr-2"> Encapsulation
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q4" class="mr-2"> Abstraction
+                </label>
+            </div>
+    
+            <!-- Question 5 -->
+            <div class="mb-6">
+                <h3 class="text-lg mb-3">5. Which OOP concept means "many forms" and allows a method to perform differently based on the object calling it?</h3>
+                <label class="block mb-2">
+                    <input type="radio" name="q5" class="mr-2"> Abstraction
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q5" class="mr-2"> Polymorphism
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q5" class="mr-2"> Inheritance
+                </label>
+                <label class="block mb-2">
+                    <input type="radio" name="q5" class="mr-2"> Encapsulation
+                </label>
+            </div>
+    
+            <button type="submit" class="bg-green-500 text-white py-3 px-6 mt-4 rounded-md hover:bg-gray-600">Submit Quiz</button>
+        </form>
+
+        <!-- Teacher Create Question Section -->
+        <div class="teacher-section hidden" id="teacher-section">
+            <h2 class="text-xl mb-6">Create Quiz Question</h2>
+            <div class="create-question space-y-4">
+                <label for="question" class="block">Question</label>
+                <input type="text" id="question" placeholder="Enter your question here..."
+                    class="w-full p-3 border border-gray-300 rounded-md">
+
+                <label for="option1" class="block">Option 1</label>
+                <input type="text" id="option1" placeholder="Enter option 1" class="w-full p-3 border border-gray-300 rounded-md">
+
+                <label for="option2" class="block">Option 2</label>
+                <input type="text" id="option2" placeholder="Enter option 2" class="w-full p-3 border border-gray-300 rounded-md">
+
+                <label for="option3" class="block">Option 3</label>
+                <input type="text" id="option3" placeholder="Enter option 3" class="w-full p-3 border border-gray-300 rounded-md">
+
+                <label for="correct-answer" class="block">Correct Answer</label>
+                <input type="text" id="correct-answer" placeholder="Enter the correct answer"
+                    class="w-full p-3 border border-gray-300 rounded-md">
+
+                <input type="submit" value="Create Question"
+                    class="bg-green-500 text-white py-3 px-6 mt-4 rounded-md hover:bg-gray-600">
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-green-500 text-white text-center py-5">
+        <p>&copy; 11th Lesson. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Selecting elements
+        const studentBtn = document.getElementById('studentBtn');
+        const teacherBtn = document.getElementById('teacherBtn');
+        const quizSection = document.getElementById('quiz-section');
+        const teacherSection = document.getElementById('teacher-section');
+
+        // Hide both sections initially
+        quizSection.style.display = 'none';
+        teacherSection.style.display = 'none';
+
+        // Show Student Quiz on click
+        studentBtn.addEventListener('click', function () {
+            quizSection.style.display = 'block';
+            teacherSection.style.display = 'none';
+        });
+
+        // Show Teacher Section on click
+        teacherBtn.addEventListener('click', function () {
+            teacherSection.style.display = 'block';
+            quizSection.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
