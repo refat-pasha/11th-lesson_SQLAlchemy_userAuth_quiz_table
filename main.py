@@ -5,12 +5,12 @@ import bcrypt
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-db = SQLAlchemy(app)
-app.secret_key = 'secret_key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  #Configures the database connection.
+db = SQLAlchemy(app)   #Sets up SQLAlchemy to manage database operations.
+app.secret_key = 'secret_key'  #Secures sensitive operations like session management and CSRF(Cross-Site Request Forgery) protection.
 
 
-class User(db.Model):
+class User(db.Model):  #create user table
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True)
@@ -20,13 +20,14 @@ class User(db.Model):
         self.name = name
         self.email = email
         self.password = bcrypt.hashpw(password.encode('utf-8'),
-                                      bcrypt.gensalt()).decode('utf-8')
+                                      bcrypt.gensalt()).decode('utf-8')#creating hashed password
 
-    def check_password(self, password):
+    def check_password(self, password):  #checking hash password
         return bcrypt.checkpw(password.encode('utf-8'),
                               self.password.encode('utf-8'))
 
-class QuizSubmission(db.Model):
+
+class QuizSubmission(db.Model): #creating quiz submission table
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     answers = db.Column(db.JSON)  # Store answers as JSON for flexibility
@@ -36,14 +37,11 @@ class QuizSubmission(db.Model):
         self.answers = answers
 
 
+with app.app_context():  #Activates the application context for the Flask app.
+    db.create_all() #Creates all the database tables defined by your SQLAlchemy models.
 
 
-
-
-with app.app_context():
-    db.create_all()
-
-
+# creating routes and others functions
 @app.route('/', methods=['POST', 'GET'])
 def home():
     return render_template('index.html')
@@ -87,12 +85,9 @@ def login():
     return render_template('login.html')
 
 
-
 @app.route('/dindex', methods=['POST', 'GET'])
 def dindex():
     return render_template('dindex.html')
-
-
 
 
 @app.route('/dashboard', methods=['POST', 'GET'])
@@ -112,7 +107,7 @@ def dashboard_search():
 
 @app.route('/quiz', methods=['POST', 'GET'])
 def quiz():
-    #questions = Quiz.query.all()
+    # questions = Quiz.query.all()
     return render_template('quiz.html')
 
 
@@ -124,6 +119,7 @@ def submit():
 @app.route('/publication', methods=['POST', 'GET'])
 def publication():
     return render_template('publication.html')
+
 
 @app.route('/publication-submit', methods=['POST','GET'])
 def publication_submit():
@@ -154,19 +150,16 @@ def quiz_submit():
             return redirect('/dashboard')
     return redirect('/login')
 
+
 @app.route('/help', methods=['POST','GET'])
 def help():
     return render_template('/help.html')
+
 
 @app.route('/logout', methods=['POST', 'GET'])
 def logout():
     session.pop('email', None)
     return redirect('/login')
-
-
-
-
-
 
 
 if __name__ == "__main__":
